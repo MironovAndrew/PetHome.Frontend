@@ -7,6 +7,7 @@ import { Volunteers } from "../pages/contentPages/petManagment/Volunteers";
 import { Pets } from "../pages/contentPages/petManagment/Pets";
 import { UserProfile } from "../pages/contentPages/userManagment/UserProfile";
 import { Help } from "../pages/contentPages/userManagment/Help";
+import { FavoritePets } from "../pages/contentPages/petManagment/FavoritePets";
 
 export function getRouter() {
   return createBrowserRouter([
@@ -37,6 +38,10 @@ export function getRouter() {
         {
           path: "/profile",
           element: <UserProfile />,
+        },
+        {
+          path: "/favoritepets",
+          element: <FavoritePets />,
         },
         {
           path: "/help",

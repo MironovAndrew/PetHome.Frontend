@@ -36,6 +36,10 @@ const settings = [
     path: "/profile",
   },
   {
+    name: "Избранные питомцы",
+    path: "/favoritepets",
+  },
+  {
     name: "Поддержка",
     path: "/help",
   },
