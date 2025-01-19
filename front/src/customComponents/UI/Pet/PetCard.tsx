@@ -1,0 +1,67 @@
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import CardActionArea from "@mui/material/CardActionArea";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router";
+
+export default function PetCard(
+  photoPath: string,
+  name: string,
+  desc: string,
+  age: number,
+  gender: string,
+  isVaccinated: boolean
+) {
+  const isVaccinatedString = isVaccinated == true ? "Да" : "Нет";
+
+  const navigate = useNavigate();
+  const getPage = (path: string) => {
+    if (path) navigate(path);
+  };
+
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image={photoPath}
+          // alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            <b>Пол:</b> {gender}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            <b>Возраст:</b> {age}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            <b>Вакцинация:</b> {isVaccinatedString}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            <b>Общее описание:</b> {desc}
+          </Typography>
+
+          <Typography paddingTop={2}>
+            <Button
+              //Заглушка
+              onClick={() => getPage("/")}
+              color="inherit"
+              size="medium"
+              variant="contained"
+            >
+              Подробнее
+            </Button>
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+}
