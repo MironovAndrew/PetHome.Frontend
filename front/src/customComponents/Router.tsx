@@ -12,9 +12,12 @@ import { FavoritePets } from "../pages/contentPages/petManagment/FavoritePets";
 export function getRouter() {
   return createBrowserRouter([
     {
-      path: "/",
       element: <RootLayout />,
       children: [
+        {
+          path: "/",
+          element: <Main />,
+        },
         {
           path: "/registration",
           element: <Registration />,
