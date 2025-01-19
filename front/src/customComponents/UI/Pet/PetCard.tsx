@@ -39,6 +39,7 @@ export default function PetCard(
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <b>Пол:</b> {gender}
           </Typography>
+
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <b>Возраст:</b> {age}
           </Typography>
@@ -49,7 +50,7 @@ export default function PetCard(
             <b>Общее описание:</b> {desc}
           </Typography>
 
-          <Typography paddingTop={2}>
+          <Typography paddingTop={2} gridRow={"revert"}>
             <Button
               //Заглушка
               onClick={() => getPage("/")}
@@ -58,6 +59,16 @@ export default function PetCard(
               variant="contained"
             >
               Подробнее
+            </Button>
+
+            <Button
+              //Заглушка
+              onClick={() => getPage("/")}
+              color="info"
+              size="medium"
+              variant="contained"
+            >
+              ♥
             </Button>
           </Typography>
         </CardContent>
