@@ -24,6 +24,11 @@ export function PetFilter() {
   return (
     <Typography padding={3}>
       <FormControl>
+        <InputLabel htmlFor="name">Имя</InputLabel>
+        <Input id="name" aria-describedby="my-helper-text" />
+      </FormControl>
+
+      <FormControl>
         <InputLabel htmlFor="species">Вид</InputLabel>
         <Input id="species" aria-describedby="my-helper-text" />
       </FormControl>
