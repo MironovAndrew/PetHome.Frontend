@@ -54,9 +54,8 @@ export default function PetCard(
             <Button
               //Заглушка
               onClick={() => getPage("/")}
-              color="inherit"
               size="medium"
-              variant="contained"
+              variant="outlined"
             >
               Подробнее
             </Button>
