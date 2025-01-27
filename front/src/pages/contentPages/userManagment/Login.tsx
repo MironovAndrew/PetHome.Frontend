@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
-import { GetUsersAPI } from "../../../api/UserAPI";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
+import { AccountService } from "../../../api/AccountService";
 
 export function Login() {
   type LoginFields = {
@@ -73,11 +73,11 @@ export function Login() {
   );
 }
 
-function GetUsers() {
+function TestGetAPI() {
   const [users, setUsers] = useState<string[]>([]);
   useEffect(() => {
     const result = async () => {
-      await GetUsersAPI()
+      await AccountService.Login()
         .then((data) => setUsers(data))
         .catch((error) => console.log(error));
     };
