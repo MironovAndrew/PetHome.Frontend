@@ -3,13 +3,9 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
 import { AccountService } from "../../../api/AccountService";
+import { LoginFields } from "../../../models/DataRequests/Login/LoginFields";
 
 export function Login() {
-  type LoginFields = {
-    email: string;
-    password: string;
-  };
-
   const {
     register,
     handleSubmit,
@@ -17,7 +13,12 @@ export function Login() {
   } = useForm<LoginFields>();
 
   const onSubmit = (fields: LoginFields) => {
-    console.log(fields);
+    try {
+      const loginResponse = AccountService.Login(fields.email, fields.password);
+      console.log(loginResponse);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

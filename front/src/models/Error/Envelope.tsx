@@ -1,7 +1,7 @@
 import { Error } from "./Error";
 
-export type Envelope = {
+export type Envelope<T> = {
   Errors: Error[];
-  Result: string;
+  Result: T;
   TimeGenerated: Date;
 };
