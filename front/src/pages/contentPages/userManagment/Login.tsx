@@ -28,7 +28,7 @@ export function Login() {
           На главную
         </NavLink>
       </div>
-      <div className="flex flex-col h-full w-full py-60 px-10 justify-center items-start gap-5">
+      <div className="flex flex-col h-full w-full py-40 px-10 justify-center items-start gap-5">
         <div className="flex flex-col flex-1 min-w-8 mx-auto items-center justify-center gap-9">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -67,6 +67,10 @@ export function Login() {
             <Button variant="contained" type="submit">
               Войти
             </Button>
+
+            <NavLink to="/registration" className="text-l text-blue-500">
+              Зарегистрироваться
+            </NavLink>
           </form>
         </div>
       </div>
