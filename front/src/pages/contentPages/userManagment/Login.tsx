@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
 import { AccountService } from "../../../api/AccountService";
 import { LoginFields } from "../../../models/DataRequests/Login/LoginFields";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export function Login() {
   const {
@@ -19,6 +20,12 @@ export function Login() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const [isShowPassword, setShowPassword] = useState(false);
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -37,7 +44,7 @@ export function Login() {
             <Typography variant="h6">Login</Typography>
 
             <TextField
-              variant="standard"
+              variant="outlined"
               label="Email"
               error={!!errors.email}
               helperText={errors.email?.message}
@@ -51,8 +58,16 @@ export function Login() {
             />
 
             <TextField
-              variant="standard"
+              variant="outlined"
               label="Пароль"
+              type={isShowPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <IconButton onClick={handleTogglePasswordVisibility}>
+                    {isShowPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                ),
+              }}
               error={!!errors.password}
               helperText={errors.password?.message}
               fullWidth
@@ -68,6 +83,8 @@ export function Login() {
               Войти
             </Button>
 
+            <Typography className="pt-8">Ещё не зарагистрированы?</Typography>
+
             <NavLink to="/registration" className="text-l text-blue-500">
               Зарегистрироваться
             </NavLink>
@@ -76,17 +93,4 @@ export function Login() {
       </div>
     </div>
   );
-}
-
-function TestGetAPI() {
-  const [users, setUsers] = useState<string[]>([]);
-  useEffect(() => {
-    const result = async () => {
-      await AccountService.Login()
-        .then((data) => setUsers(data))
-        .catch((error) => console.log(error));
-    };
-    result();
-  }, []);
-  return users;
 }
