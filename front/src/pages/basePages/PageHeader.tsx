@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Navigate, NavLink, useNavigate } from "react-router";
-import { Main } from "../contentPages/userManagment/Main";
+import { MainPage } from "../contentPages/userManagment/MainPage";
 
 const pages = [
   {

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import { RootLayout } from "./RootLayout";
-import { Registration } from "../pages/contentPages/userManagment/Registration";
-import { Login } from "../pages/contentPages/userManagment/Login";
-import { Main } from "../pages/contentPages/userManagment/Main";
+import { RegistrationPage } from "../pages/contentPages/userManagment/RegistrationPage";
+import { LoginPage } from "../pages/contentPages/userManagment/LoginPage";
+import { MainPage } from "../pages/contentPages/userManagment/MainPage";
 import { Volunteers } from "../pages/contentPages/petManagment/Volunteers";
 import { Pets } from "../pages/contentPages/petManagment/Pets";
-import { UserProfile } from "../pages/contentPages/userManagment/UserProfile";
-import { Help } from "../pages/contentPages/userManagment/Help";
+import { UserProfilePage } from "../pages/contentPages/userManagment/UserProfilePage";
+import { HelpPage } from "../pages/contentPages/userManagment/HelpPage";
 import { FavoritePets } from "../pages/contentPages/petManagment/FavoritePets";
 import { NotFound } from "../pages/basePages/NotFound";
 
@@ -17,19 +17,19 @@ export function getRouter() {
       children: [
         {
           path: "/",
-          element: <Main />,
+          element: <MainPage />,
         },
         {
           path: "/registration",
-          element: <Registration />,
+          element: <RegistrationPage />,
         },
         {
           path: "/login",
-          element: <Login />,
+          element: <LoginPage />,
         },
         {
           path: "/main",
-          element: <Main />,
+          element: <MainPage />,
         },
         {
           path: "/volunteers",
@@ -41,7 +41,7 @@ export function getRouter() {
         },
         {
           path: "/profile",
-          element: <UserProfile />,
+          element: <UserProfilePage />,
         },
         {
           path: "/favoritepets",
@@ -49,7 +49,7 @@ export function getRouter() {
         },
         {
           path: "/help",
-          element: <Help />,
+          element: <HelpPage />,
         },
       ],
       errorElement: <NotFound />,

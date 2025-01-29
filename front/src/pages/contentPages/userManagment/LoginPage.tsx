@@ -1,25 +1,21 @@
-import { useEffect, useState } from "react";
 import { Button, IconButton, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
-import { AccountService } from "../../../api/AccountService";
 import { LoginFields } from "../../../models/DataRequests/Login/LoginFields";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useAuth } from "../../../contexts/auth/useAuth";
+import { useState } from "react";
 
-export function Login() {
+export function LoginPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFields>();
 
-  const onSubmit = (fields: LoginFields) => {
-    try {
-      const loginResponse = AccountService.Login(fields.email, fields.password);
-      console.log(loginResponse);
-    } catch (error) {
-      console.log(error);
-    }
+  const { login } = useAuth();
+  const onSubmit = async (fields: LoginFields) => {
+    await login(fields.email, fields.password);
   };
 
   const [isShowPassword, setShowPassword] = useState(false);
