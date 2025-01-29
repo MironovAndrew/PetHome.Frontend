@@ -5,6 +5,7 @@ import { LoginFields } from "../../../models/DataRequests/Login/LoginFields";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAuth } from "../../../contexts/auth/useAuth";
 import { useState } from "react";
+import { AccountService } from "../../../api/AccountService";
 
 export function LoginPage() {
   const {
@@ -85,6 +86,17 @@ export function LoginPage() {
               Зарегистрироваться
             </NavLink>
           </form>
+
+          <Button
+            variant="contained"
+            type="submit"
+            onClick={async () => {
+              const response = await AccountService.Test();
+              console.log(response);
+            }}
+          >
+            Test
+          </Button>
         </div>
       </div>
     </div>

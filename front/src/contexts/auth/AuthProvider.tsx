@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { AccountService } from "../../api/AccountService";
 import { User } from "../../models/dtos/User";
 import { AuthContext } from "./AuthContext";
@@ -8,8 +8,55 @@ export type Props = { children: React.ReactNode };
 
 export const AuthProvider = ({ children }: Props) => {
   const [accessToken, setAccessToken] = useState<string | undefined>();
-  const [refreshToken, setRefreshToken] = useState<string | undefined>();
   const [user, setUser] = useState<User | undefined>();
+
+  useEffect(() => {
+    const accessTokenInterceptor = api.interceptors.request.use((config) => {
+      config.headers.Authorization = accessToken
+        ? `Bearer ${accessToken}`
+        : config.headers.Authorization;
+      return config;
+    });
+
+    return () => {
+      api.interceptors.response.eject(accessTokenInterceptor);
+    };
+  }, [accessToken]);
+
+  useLayoutEffect(() => {
+    const refreshTokenInterceptor = api.interceptors.response.use(
+      (config) => config,
+      async (error) => {
+        if (error.response.error === 401) {
+          const originalRequest = error.config;
+          try {
+            const response = await AccountService.Refresh();
+            const responseData = response.data.Result;
+            setAccessToken(responseData.AccessToken);
+            const user = {
+              id: responseData.UserId,
+              username: responseData.UserName,
+              email: responseData.Email,
+            } as User;
+            setUser(user);
+
+            originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+
+            return api(originalRequest);
+          } catch (error) {
+            console.log(error);
+            setAccessToken(undefined);
+          }
+
+          throw Promise.reject(error);
+        }
+      }
+    );
+
+    return () => {
+      api.interceptors.response.eject(refreshTokenInterceptor);
+    };
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {
@@ -17,12 +64,7 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(loginResponse);
 
       setAccessToken(loginResponse.data.Result!.AccessToken);
-      setRefreshToken(loginResponse.data.Result!.RefreshToken);
-
-      api.interceptors.request.use((config) => {
-        config.headers.Authorization = `Bearer ${accessToken}`;
-        return config;
-      });
+      // setRefreshToken(loginResponse.data.Result!.RefreshToken);
     } catch (error) {
       console.log(error);
     }
