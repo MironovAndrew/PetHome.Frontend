@@ -27,18 +27,24 @@ export const AuthProvider = ({ children }: Props) => {
     const refreshTokenInterceptor = api.interceptors.response.use(
       (config) => config,
       async (error) => {
-        if (error.response.error === 401) {
+        if (error.response.status === 401) {
           const originalRequest = error.config;
           try {
             const response = await AccountService.Refresh();
             const responseData = response.data.result;
+
             setAccessToken(responseData.accessToken);
+            console.log(
+              "\tnew access token -----> " + (accessToken ?? "empty")
+            );
+
             const user = {
-              id: responseData.UserId,
-              username: responseData.UserName,
-              email: responseData.Email,
+              id: responseData.userId,
+              username: responseData.userName,
+              email: responseData.email,
             } as User;
             setUser(user);
+            console.log("\tuser -----> " + (user ?? "empty"));
 
             originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
@@ -47,9 +53,8 @@ export const AuthProvider = ({ children }: Props) => {
             console.log(error);
             setAccessToken(undefined);
           }
-
-          throw Promise.reject(error);
         }
+        return Promise.reject(error);
       }
     );
 
@@ -71,7 +76,8 @@ export const AuthProvider = ({ children }: Props) => {
 
   const test = async () => {
     try {
-      await AccountService.Test();
+      const testResponse = await AccountService.Test();
+      console.log(testResponse);
     } catch (error) {
       console.log(error);
     }

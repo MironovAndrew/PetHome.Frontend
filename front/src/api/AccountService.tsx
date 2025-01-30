@@ -20,8 +20,8 @@ export class AccountService {
   static async Refresh(): Promise<AxiosResponse<Envelope<LoginResponse>>> {
     const method = "refresh";
 
-    return await axios.post(
-      API_URL + method,
+    return await api.post(
+      method,
       {},
       {
         withCredentials: true,
