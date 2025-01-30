@@ -14,7 +14,7 @@ export function LoginPage() {
     formState: { errors },
   } = useForm<LoginFields>();
 
-  const { login } = useAuth();
+  const { login, test } = useAuth();
   const onSubmit = async (fields: LoginFields) => {
     await login(fields.email, fields.password);
   };
@@ -86,18 +86,16 @@ export function LoginPage() {
               Зарегистрироваться
             </NavLink>
           </form>
-
-          <Button
-            variant="contained"
-            type="submit"
-            onClick={async () => {
-              const response = await AccountService.Test();
-              console.log(response);
-            }}
-          >
-            Test
-          </Button>
         </div>
+        <Button
+          variant="contained"
+          type="submit"
+          onClick={async () => {
+            await test();
+          }}
+        >
+          Test
+        </Button>
       </div>
     </div>
   );

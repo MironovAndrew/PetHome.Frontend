@@ -33,12 +33,12 @@ export const AuthProvider = ({ children }: Props) => {
             const response = await AccountService.Refresh();
             const responseData = response.data.result;
             setAccessToken(responseData.accessToken);
-            // const user = {
-            //   id: responseData.UserId,
-            //   username: responseData.UserName,
-            //   email: responseData.Email,
-            // } as User;
-            // setUser(user);
+            const user = {
+              id: responseData.UserId,
+              username: responseData.UserName,
+              email: responseData.Email,
+            } as User;
+            setUser(user);
 
             originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
@@ -64,14 +64,21 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(loginResponse);
 
       setAccessToken(loginResponse.data.result!.accessToken);
-      // setRefreshToken(loginResponse.data.Result!.RefreshToken);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const test = async () => {
+    try {
+      await AccountService.Test();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ accessToken, user, login }}>
+    <AuthContext.Provider value={{ accessToken, user, login, test }}>
       {children}
     </AuthContext.Provider>
   );

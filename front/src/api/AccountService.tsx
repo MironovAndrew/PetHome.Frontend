@@ -32,8 +32,8 @@ export class AccountService {
   static async Test() {
     const method = "test";
 
-    return await axios.post(
-      API_URL + method,
+    return await api.post(
+      method,
       {},
       {
         withCredentials: true,
