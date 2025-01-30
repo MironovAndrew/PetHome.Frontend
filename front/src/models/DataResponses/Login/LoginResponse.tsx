@@ -1,7 +1,7 @@
 export type LoginResponse = {
-  AccessToken: string;
-  RefreshToken: string;
-  UserId: string;
-  Email: string;
-  UserName: string;
+  accessToken: string;
+  refreshToken: string;
+  UserId: string | undefined;
+  Email: string | undefined;
+  UserName: string | undefined;
 };
