@@ -14,6 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Navigate, NavLink, useNavigate } from "react-router";
 import { MainPage } from "../contentPages/userManagment/MainPage";
+import { useAuth } from "../../contexts/auth/useAuth";
+import test from "node:test";
+import { useEffect, useState } from "react";
 
 const pages = [
   {
@@ -46,6 +49,8 @@ const settings = [
 ];
 
 export function PageHeader() {
+  const { accessToken, authChecker } = useAuth();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -62,9 +67,12 @@ export function PageHeader() {
 
   const navigate = useNavigate();
 
-  const handleCloseNavMenu = (path: string) => {
+  const handleCloseNavMenu = async (path: string) => {
     setAnchorElNav(null);
-    if (path) navigate(path);
+    if (path) {
+      await authChecker();
+      navigate(path);
+    }
   };
 
   const handleCloseUserMenu = (path: string) => {
@@ -163,40 +171,52 @@ export function PageHeader() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+          {accessToken ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem
+                    key={setting.name}
+                    onClick={() => handleCloseUserMenu(setting.path)}
+                  >
+                    <Typography sx={{ textAlign: "center" }}>
+                      {setting.name}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
+            <Button
+              variant="contained"
+              color="success"
+              onClick={async () => {
+                navigate("/login");
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting.name}
-                  onClick={() => handleCloseUserMenu(setting.path)}
-                >
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting.name}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              Login
+            </Button>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

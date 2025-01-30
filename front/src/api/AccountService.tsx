@@ -29,8 +29,8 @@ export class AccountService {
     );
   }
 
-  static async Test() {
-    const method = "test";
+  static async AuthChecker() {
+    const method = "auth-checker";
 
     return await api.post(
       method,

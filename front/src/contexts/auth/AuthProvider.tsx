@@ -66,25 +66,32 @@ export const AuthProvider = ({ children }: Props) => {
   const login = async (email: string, password: string) => {
     try {
       const loginResponse = await AccountService.Login(email, password);
+      const loginResponseData = loginResponse.data.result;
       console.log(loginResponse);
 
       setAccessToken(loginResponse.data.result!.accessToken);
+      setUser({
+        id: loginResponseData.userId,
+        email: loginResponseData.email,
+        username: loginResponseData.userName,
+      } as User);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const test = async () => {
+  const authChecker = async () => {
     try {
-      const testResponse = await AccountService.Test();
-      console.log(testResponse);
+      const authCheckerResponse = await AccountService.AuthChecker();
+      console.log(authCheckerResponse);
+      console.log(user);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ accessToken, user, login, test }}>
+    <AuthContext.Provider value={{ accessToken, user, login, authChecker }}>
       {children}
     </AuthContext.Provider>
   );

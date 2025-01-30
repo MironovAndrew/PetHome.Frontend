@@ -1,11 +1,10 @@
 import { Button, IconButton, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router";
+import { Navigate, NavLink, useNavigate } from "react-router";
 import { LoginFields } from "../../../models/DataRequests/Login/LoginFields";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAuth } from "../../../contexts/auth/useAuth";
 import { useState } from "react";
-import { AccountService } from "../../../api/AccountService";
 
 export function LoginPage() {
   const {
@@ -14,9 +13,12 @@ export function LoginPage() {
     formState: { errors },
   } = useForm<LoginFields>();
 
-  const { login, test } = useAuth();
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
   const onSubmit = async (fields: LoginFields) => {
     await login(fields.email, fields.password);
+    navigate("/profile");
   };
 
   const [isShowPassword, setShowPassword] = useState(false);
@@ -87,15 +89,6 @@ export function LoginPage() {
             </NavLink>
           </form>
         </div>
-        <Button
-          variant="contained"
-          type="submit"
-          onClick={async () => {
-            await test();
-          }}
-        >
-          Test
-        </Button>
       </div>
     </div>
   );
