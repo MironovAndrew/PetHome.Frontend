@@ -4,6 +4,7 @@ import { LoginResponse } from "../models/DataResponses/Login/LoginResponse";
 import { api, API_URL } from "./api";
 import { UserRegistrationFields } from "../models/DataRequests/Registration/RegistrationFields";
 import { requisite } from "../models/dtos/Requisite";
+import dayjs, { Dayjs } from "dayjs";
 
 export class AccountService {
   static async Login(
@@ -54,7 +55,7 @@ export class AccountService {
     password: string,
     firstName: string,
     lastName: string,
-    startVolunteeringDate: Date,
+    startVolunteeringDate: Dayjs | null,
     phoneNumbers: string[],
     socialNetworks: string[],
     requisitesesDto: requisite[]

@@ -8,6 +8,7 @@ import { Envelope } from "../../models/Error/Envelope";
 import { LoginFields } from "../../models/DataRequests/Login/LoginFields";
 import { LoginResponse } from "../../models/DataResponses/Login/LoginResponse";
 import { requisite } from "../../models/dtos/Requisite";
+import dayjs, { Dayjs } from "dayjs";
 
 export type Props = { children: React.ReactNode };
 
@@ -82,6 +83,7 @@ export const AuthProvider = ({ children }: Props) => {
       } as User);
     } catch (error) {
       console.log(error);
+      setUser(undefined);
     }
   };
 
@@ -102,6 +104,7 @@ export const AuthProvider = ({ children }: Props) => {
       } as User);
     } catch (error) {
       console.log(error);
+      setUser(undefined);
     }
   };
 
@@ -111,7 +114,7 @@ export const AuthProvider = ({ children }: Props) => {
     password: string,
     firstName: string,
     lastName: string,
-    startVolunteeringDate: Date,
+    startVolunteeringDate: Dayjs | null,
     phoneNumbers: string[],
     socialNetworks: string[],
     requisitesesDto: requisite[]
@@ -139,6 +142,7 @@ export const AuthProvider = ({ children }: Props) => {
       } as User);
     } catch (error) {
       console.log(error);
+      setUser(undefined);
     }
   };
 
@@ -149,6 +153,7 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(user);
     } catch (error) {
       console.log(error);
+      setUser(undefined);
     }
   };
 

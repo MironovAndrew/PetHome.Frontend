@@ -34,7 +34,7 @@ export function VolunteerRegistrationPage() {
       startVolunteeringDate,
       phoneNumbers.map((item) => item.phone),
       socialNetworks.map((item) => item.link),
-      fields.requisitesesDto
+      requisites
     );
 
     console.log(user);
@@ -68,7 +68,7 @@ export function VolunteerRegistrationPage() {
             helperText={errors.email?.message}
             fullWidth
             {...register("email", {
-              required: "Это поле обязательно",
+              required: "Введите email",
               validate: (value) => {
                 if (!value.includes("@")) return "Email должен содержать '@'";
               },
@@ -77,14 +77,13 @@ export function VolunteerRegistrationPage() {
           <TextField
             variant="outlined"
             label="Username"
-            error={!!errors.email}
-            helperText={errors.email?.message}
+            error={!!errors.username}
+            helperText={errors.username?.message}
             fullWidth
             {...register("username", {
-              required: "Это поле обязательно",
+              required: "Введите username",
               validate: (value) => {
-                if (!value.includes("@"))
-                  return "username должен содержать '@'";
+                if (value.length === 0) return "Введите корректный username";
               },
             })}
           />
@@ -103,11 +102,11 @@ export function VolunteerRegistrationPage() {
             helperText={errors.password?.message}
             fullWidth
             {...register("password", {
-              required: "Это поле обязательно",
-              // validate: (value) => {
-              //   if (value.length < 10)
-              //     return "Пароль должен быть длиннее 10 символов";
-              // },
+              required: "Введите пароль",
+              validate: (value) => {
+                if (value.length < 10)
+                  return "Пароль должен быть длиннее 10 символов";
+              },
             })}
           />
           <TextField
@@ -118,35 +117,32 @@ export function VolunteerRegistrationPage() {
             helperText={errors.password?.message}
             fullWidth
             {...register("password", {
-              required: "Это поле обязательно",
-              // validate: (value) => {
-              //   if (value) return "Пароль должен быть длиннее 10 символов";
-              // },
+              required: "Введите пароль",
             })}
           />
           <TextField
             variant="outlined"
             label="Фамилия"
-            error={!!errors.email}
-            helperText={errors.email?.message}
+            error={!!errors.lastName}
+            helperText={errors.lastName?.message}
             fullWidth
             {...register("lastName", {
-              required: "Это поле обязательно",
+              required: "Введите фамилию",
               validate: (value) => {
-                if (!value.includes("@")) return "Email должен содержать '@'";
+                if (value.length === 0) return "Введите корректную фамилию";
               },
             })}
           />
           <TextField
             variant="outlined"
             label="Имя"
-            error={!!errors.email}
-            helperText={errors.email?.message}
+            error={!!errors.firstName}
+            helperText={errors.firstName?.message}
             fullWidth
             {...register("firstName", {
-              required: "Это поле обязательно",
+              required: "Введите имя",
               validate: (value) => {
-                if (!value.includes("@")) return "Email должен содержать '@'";
+                if (value.length === 0) return "Введите корректное имя";
               },
             })}
           />
