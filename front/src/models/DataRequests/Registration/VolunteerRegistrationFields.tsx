@@ -5,6 +5,7 @@ export type VolunteerRegistrationFields = {
   email: string;
   username: string;
   password: string;
+  description: string;
   firstName: string;
   lastName: string;
   startVolunteeringDate: Dayjs | null;

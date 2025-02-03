@@ -52,6 +52,7 @@ export class AccountService {
   static async VolunteerRegistration(
     email: string,
     username: string,
+    description: string,
     password: string,
     firstName: string,
     lastName: string,
@@ -64,6 +65,7 @@ export class AccountService {
     return await api.post(method, {
       email,
       username,
+      description,
       password,
       firstName,
       lastName,

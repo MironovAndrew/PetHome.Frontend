@@ -9,6 +9,7 @@ import { LoginFields } from "../../models/DataRequests/Login/LoginFields";
 import { LoginResponse } from "../../models/DataResponses/Login/LoginResponse";
 import { requisite } from "../../models/dtos/Requisite";
 import dayjs, { Dayjs } from "dayjs";
+import { strict } from "assert";
 
 export type Props = { children: React.ReactNode };
 
@@ -111,6 +112,7 @@ export const AuthProvider = ({ children }: Props) => {
   const volunteerRegistration = async (
     email: string,
     username: string,
+    description: string,
     password: string,
     firstName: string,
     lastName: string,
@@ -123,6 +125,7 @@ export const AuthProvider = ({ children }: Props) => {
       const loginResponse = await AccountService.VolunteerRegistration(
         email,
         username,
+        description,
         password,
         firstName,
         lastName,

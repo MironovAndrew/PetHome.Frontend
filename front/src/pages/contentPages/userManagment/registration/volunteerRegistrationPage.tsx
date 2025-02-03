@@ -28,6 +28,7 @@ export function VolunteerRegistrationPage() {
     await volunteerRegistration(
       fields.email,
       fields.username,
+      fields.description,
       fields.password,
       fields.firstName,
       fields.lastName,
@@ -87,6 +88,21 @@ export function VolunteerRegistrationPage() {
               },
             })}
           />
+
+          <TextField
+            variant="outlined"
+            label="Описание"
+            error={!!errors.username}
+            helperText={errors.username?.message}
+            fullWidth
+            {...register("description", {
+              required: "Введите описание",
+              validate: (value) => {
+                if (value.length === 0) return "Введите корректный username";
+              },
+            })}
+          />
+
           <TextField
             variant="outlined"
             label="Пароль"

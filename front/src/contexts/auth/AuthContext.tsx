@@ -11,6 +11,7 @@ export type AuthContextType = {
   volunteerRegistration: (
     email: string,
     username: string,
+    description: string,
     password: string,
     firstName: string,
     lastName: string,
