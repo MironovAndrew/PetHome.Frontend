@@ -7,7 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { NavLink, useNavigate } from "react-router";
 import { ParticipantRegistrationPage } from "./participantRegistrationPage";
 import { VolunteerRegistrationPage } from "./volunteerRegistrationPage";
-import { addRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
+import { addSocialNetworksForm } from "../../../forms/registrationForms/AddSocialNetworksForm";
 
 export function MainRegistrationPage() {
   const participantTab = "participantTab";

@@ -9,7 +9,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { addRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
+import { addSocialNetworksForm } from "../../../forms/registrationForms/AddSocialNetworksForm";
 import { addPhoneNumbersForm } from "../../../forms/registrationForms/AddPhoneNumbersForm";
 import { useState } from "react";
 
@@ -155,7 +155,7 @@ export function VolunteerRegistrationPage() {
               onChange={(newValue) => setStartVolunteeringDate(newValue)}
             />
             {addPhoneNumbersForm({ onSave: setPhoneNumbers })}
-            {addRequisitesForm({ onSave: setSocialNetworks })}
+            {addSocialNetworksForm({ onSave: setSocialNetworks })}
           </LocalizationProvider>
           <Button variant="contained" className="w-full" type="submit">
             Зарегистрироваться
