@@ -19,6 +19,7 @@ export function VolunteerRegistrationPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<VolunteerRegistrationFields>();
 
@@ -39,8 +40,7 @@ export function VolunteerRegistrationPage() {
     );
 
     console.log(user);
-
-    if (user) navigate("/profile");
+    if (user) navigate("/login");
   };
 
   const [isShowPassword, setShowPassword] = React.useState(false);
@@ -54,6 +54,7 @@ export function VolunteerRegistrationPage() {
   const [phoneNumbers, setPhoneNumbers] = useState([{ phone: "" }]);
   const [socialNetworks, setSocialNetworks] = useState([{ link: "" }]);
   const [requisites, setRequisites] = useState<requisite[]>([]);
+  const password = watch("password");
 
   return (
     <>
@@ -70,8 +71,9 @@ export function VolunteerRegistrationPage() {
             fullWidth
             {...register("email", {
               required: "Введите email",
-              validate: (value) => {
-                if (!value.includes("@")) return "Email должен содержать '@'";
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Введите корректную почту",
               },
             })}
           />
@@ -83,8 +85,9 @@ export function VolunteerRegistrationPage() {
             fullWidth
             {...register("username", {
               required: "Введите username",
-              validate: (value) => {
-                if (value.length === 0) return "Введите корректный username";
+              minLength: {
+                value: 2,
+                message: "Введите корректный username",
               },
             })}
           />
@@ -97,8 +100,9 @@ export function VolunteerRegistrationPage() {
             fullWidth
             {...register("description", {
               required: "Введите описание",
-              validate: (value) => {
-                if (value.length === 0) return "Введите корректный username";
+              minLength: {
+                value: 2,
+                message: "Введите корректное описание",
               },
             })}
           />
@@ -119,9 +123,10 @@ export function VolunteerRegistrationPage() {
             fullWidth
             {...register("password", {
               required: "Введите пароль",
-              validate: (value) => {
-                if (value.length < 10)
-                  return "Пароль должен быть длиннее 10 символов";
+
+              minLength: {
+                value: 10,
+                message: "Введите корректный пароль",
               },
             })}
           />
@@ -129,11 +134,14 @@ export function VolunteerRegistrationPage() {
             variant="outlined"
             label="Повторите пароль"
             type="password"
-            error={!!errors.password}
-            helperText={errors.password?.message}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword?.message}
             fullWidth
-            {...register("password", {
+            {...register("confirmPassword", {
               required: "Введите пароль",
+              validate: (value) => {
+                if (value !== password) return "Пароли не совпадают!";
+              },
             })}
           />
           <TextField
@@ -144,8 +152,9 @@ export function VolunteerRegistrationPage() {
             fullWidth
             {...register("lastName", {
               required: "Введите фамилию",
-              validate: (value) => {
-                if (value.length === 0) return "Введите корректную фамилию";
+              minLength: {
+                value: 2,
+                message: "Введите корректную фамилию",
               },
             })}
           />
@@ -157,8 +166,9 @@ export function VolunteerRegistrationPage() {
             fullWidth
             {...register("firstName", {
               required: "Введите имя",
-              validate: (value) => {
-                if (value.length === 0) return "Введите корректное имя";
+              minLength: {
+                value: 2,
+                message: "Введите корректное имя",
               },
             })}
           />

@@ -45,7 +45,7 @@ export class AccountService {
   }
 
   static async ParticipantRegistration(email: string, password: string) {
-    const method = "registration";
+    const method = "participant/registration";
     return await api.post(method, { email, password });
   }
 
@@ -61,7 +61,7 @@ export class AccountService {
     socialNetworks: string[],
     requisitesesDto: requisite[]
   ) {
-    const method = "registration";
+    const method = "volunteer/registration";
     return await api.post(method, {
       email,
       username,

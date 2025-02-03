@@ -1,30 +1,24 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import Tabs from "@mui/material/Tabs";
-import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../../../contexts/auth/useAuth";
-import { LoginFields } from "../../../../models/DataRequests/Login/LoginFields";
 import { UserRegistrationFields } from "../../../../models/DataRequests/Registration/RegistrationFields";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { Typography, TextField, IconButton, Button } from "@mui/material";
+import { useForm } from "react-hook-form";
 
 export function ParticipantRegistrationPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<UserRegistrationFields>();
 
   const navigate = useNavigate();
-  const { participantRegistration, volunteerRegistration, user } = useAuth();
+  const { participantRegistration, user } = useAuth();
   const onSubmit = async (fields: UserRegistrationFields) => {
     await participantRegistration(fields.email, fields.password);
-    if (user) navigate("/profile");
+    if (user) navigate("/login");
   };
 
   const [isShowPassword, setShowPassword] = React.useState(false);
@@ -32,6 +26,8 @@ export function ParticipantRegistrationPage() {
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+
+  const password = watch("password");
 
   return (
     <div className="flex flex-col flex-1 min-w-8 mx-auto items-center justify-center gap-9">
@@ -47,8 +43,9 @@ export function ParticipantRegistrationPage() {
           fullWidth
           {...register("email", {
             required: "Это поле обязательно",
-            validate: (value) => {
-              if (!value.includes("@")) return "Email должен содержать '@'";
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Введите корректную почту",
             },
           })}
         />
@@ -61,8 +58,9 @@ export function ParticipantRegistrationPage() {
           fullWidth
           {...register("username", {
             required: "Это поле обязательно",
-            validate: (value) => {
-              if (!value.includes("@")) return "username должен содержать '@'";
+            minLength: {
+              value: 2,
+              message: "Введите корректное имя",
             },
           })}
         />
@@ -82,9 +80,9 @@ export function ParticipantRegistrationPage() {
           fullWidth
           {...register("password", {
             required: "Это поле обязательно",
-            validate: (value) => {
-              if (value.length < 10)
-                return "Пароль должен быть длиннее 10 символов";
+            minLength: {
+              value: 10,
+              message: "Пароль должен быть длиннее 10 символов",
             },
           })}
         />
@@ -93,13 +91,13 @@ export function ParticipantRegistrationPage() {
           variant="outlined"
           label="Повторите пароль"
           type="password"
-          error={!!errors.password}
-          helperText={errors.password?.message}
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword?.message}
           fullWidth
-          {...register("password", {
+          {...register("confirmPassword", {
             required: "Это поле обязательно",
             validate: (value) => {
-              if (value) return "Пароль должен быть длиннее 10 символов";
+              if (value !== password) return "Пароли не совпадают!";
             },
           })}
         />

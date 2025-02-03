@@ -5,6 +5,7 @@ export type VolunteerRegistrationFields = {
   email: string;
   username: string;
   password: string;
+  confirmPassword: string;
   description: string;
   firstName: string;
   lastName: string;

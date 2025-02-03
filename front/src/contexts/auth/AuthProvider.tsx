@@ -3,13 +3,8 @@ import { AccountService } from "../../api/AccountService";
 import { User } from "../../models/dtos/User";
 import { AuthContext } from "./AuthContext";
 import { api } from "../../api/api";
-import { AxiosPromise } from "axios";
-import { Envelope } from "../../models/Error/Envelope";
-import { LoginFields } from "../../models/DataRequests/Login/LoginFields";
-import { LoginResponse } from "../../models/DataResponses/Login/LoginResponse";
 import { requisite } from "../../models/dtos/Requisite";
-import dayjs, { Dayjs } from "dayjs";
-import { strict } from "assert";
+import { Dayjs } from "dayjs";
 
 export type Props = { children: React.ReactNode };
 
@@ -73,18 +68,11 @@ export const AuthProvider = ({ children }: Props) => {
   const login = async (email: string, password: string) => {
     try {
       const loginResponse = await AccountService.Login(email, password);
-      const loginResponseData = loginResponse.data.result;
       console.log(loginResponse);
-
-      setAccessToken(loginResponse.data.result!.accessToken);
-      setUser({
-        id: loginResponseData.userId,
-        email: loginResponseData.email,
-        username: loginResponseData.userName,
-      } as User);
     } catch (error) {
       console.log(error);
       setUser(undefined);
+      setAccessToken(undefined);
     }
   };
 
@@ -94,18 +82,11 @@ export const AuthProvider = ({ children }: Props) => {
         email,
         password
       );
-      const loginResponseData = loginResponse.data.result;
       console.log(loginResponse);
-
-      setAccessToken(loginResponse.data.result!.accessToken);
-      setUser({
-        id: loginResponseData.userId,
-        email: loginResponseData.email,
-        username: loginResponseData.userName,
-      } as User);
     } catch (error) {
       console.log(error);
       setUser(undefined);
+      setAccessToken(undefined);
     }
   };
 
@@ -134,17 +115,10 @@ export const AuthProvider = ({ children }: Props) => {
         socialNetworks,
         requisitesesDto
       );
-      const loginResponseData = loginResponse.data.result;
       console.log(loginResponse);
-
-      setAccessToken(loginResponse.data.result!.accessToken);
-      setUser({
-        id: loginResponseData.userId,
-        email: loginResponseData.email,
-        username: loginResponseData.userName,
-      } as User);
     } catch (error) {
       console.log(error);
+      setAccessToken(undefined);
       setUser(undefined);
     }
   };
@@ -156,6 +130,7 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(user);
     } catch (error) {
       console.log(error);
+      setAccessToken(undefined);
       setUser(undefined);
     }
   };
