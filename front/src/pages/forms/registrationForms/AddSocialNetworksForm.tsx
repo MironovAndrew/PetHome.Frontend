@@ -57,10 +57,6 @@ export function addSocialNetworksForm({
           component: "form",
           onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            console.log(email);
             handleClose();
           },
         }}
@@ -70,15 +66,9 @@ export function addSocialNetworksForm({
           {socialNetworks.map((social, index) => (
             <Box key={index} display="flex" alignItems="center" gap={2} mb={2}>
               <TextField
-                // autoFocus
-                required
-                // margin="dense"
-                // id="phone"
-                // name="phone"
                 label="Url"
                 value={social["link"]}
                 onChange={(e) => onChangeSocialNetwork(index, e.target.value)}
-                // type="num"
                 fullWidth
                 variant="outlined"
               />

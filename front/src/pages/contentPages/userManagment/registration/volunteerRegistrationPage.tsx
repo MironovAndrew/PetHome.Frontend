@@ -12,6 +12,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { addSocialNetworksForm } from "../../../forms/registrationForms/AddSocialNetworksForm";
 import { addPhoneNumbersForm } from "../../../forms/registrationForms/AddPhoneNumbersForm";
 import { useState } from "react";
+import { addRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
+import { requisite } from "../../../../models/dtos/Requisite";
 
 export function VolunteerRegistrationPage() {
   const {
@@ -50,6 +52,7 @@ export function VolunteerRegistrationPage() {
     React.useState<Dayjs | null>(dayjs("2022-04-17"));
   const [phoneNumbers, setPhoneNumbers] = useState([{ phone: "" }]);
   const [socialNetworks, setSocialNetworks] = useState([{ link: "" }]);
+  const [requisites, setRequisites] = useState<requisite[]>([]);
 
   return (
     <>
@@ -156,6 +159,7 @@ export function VolunteerRegistrationPage() {
             />
             {addPhoneNumbersForm({ onSave: setPhoneNumbers })}
             {addSocialNetworksForm({ onSave: setSocialNetworks })}
+            {addRequisitesForm({ onSave: setRequisites })}
           </LocalizationProvider>
           <Button variant="contained" className="w-full" type="submit">
             Зарегистрироваться
