@@ -95,8 +95,8 @@ export function VolunteerRegistrationPage() {
           <TextField
             variant="outlined"
             label="Описание"
-            error={!!errors.username}
-            helperText={errors.username?.message}
+            error={!!errors.description}
+            helperText={errors.description?.message}
             fullWidth
             {...register("description", {
               required: "Введите описание",

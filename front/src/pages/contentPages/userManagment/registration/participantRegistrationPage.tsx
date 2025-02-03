@@ -53,8 +53,8 @@ export function ParticipantRegistrationPage() {
         <TextField
           variant="outlined"
           label="Имя"
-          error={!!errors.email}
-          helperText={errors.email?.message}
+          error={!!errors.username}
+          helperText={errors.username?.message}
           fullWidth
           {...register("username", {
             required: "Это поле обязательно",
