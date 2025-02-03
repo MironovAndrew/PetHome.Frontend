@@ -102,7 +102,7 @@ export function ParticipantRegistrationPage() {
           })}
         />
 
-        <Button variant="contained" type="submit">
+        <Button variant="contained" fullWidth type="submit">
           Зарегистрироваться
         </Button>
 
