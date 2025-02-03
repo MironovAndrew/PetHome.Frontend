@@ -7,13 +7,13 @@ import TabPanel from "@mui/lab/TabPanel";
 import { NavLink, useNavigate } from "react-router";
 import { ParticipantRegistrationPage } from "./participantRegistrationPage";
 import { VolunteerRegistrationPage } from "./volunteerRegistrationPage";
-import { requisiteForm } from "../../../../models/content/requisiteForm";
+import { addRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
 
 export function MainRegistrationPage() {
   const participantTab = "participantTab";
   const volunteerTab = "volunteerTab";
 
-  const [tabValue, setTabValue] = React.useState(participantTab);
+  const [tabValue, setTabValue] = React.useState(volunteerTab);
 
   const handleChangeTab = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);

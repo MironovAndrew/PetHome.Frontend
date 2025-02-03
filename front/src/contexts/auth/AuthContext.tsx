@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { User } from "../../models/dtos/User";
 import { requisite } from "../../models/dtos/Requisite";
+import dayjs, { Dayjs } from "dayjs";
 
 export type AuthContextType = {
   accessToken: string | undefined;
@@ -13,7 +14,7 @@ export type AuthContextType = {
     password: string,
     firstName: string,
     lastName: string,
-    startVolunteeringDate: Date,
+    startVolunteeringDate: Dayjs | null,
     phoneNumbers: string[],
     socialNetworks: string[],
     requisitesesDto: requisite[]
