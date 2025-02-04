@@ -15,10 +15,10 @@ export function LoginPage() {
 
   const navigate = useNavigate();
 
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const onSubmit = async (fields: LoginFields) => {
     await login(fields.email, fields.password);
-    navigate("/profile");
+    if (user) navigate("/profile");
   };
 
   const [isShowPassword, setShowPassword] = useState(false);

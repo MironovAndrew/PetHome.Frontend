@@ -2,6 +2,9 @@ import axios, { AxiosResponse } from "axios";
 import { Envelope } from "../models/Error/Envelope";
 import { LoginResponse } from "../models/DataResponses/Login/LoginResponse";
 import { api, API_URL } from "./api";
+import { UserRegistrationFields } from "../models/DataRequests/Registration/RegistrationFields";
+import { requisite } from "../models/dtos/Requisite";
+import dayjs, { Dayjs } from "dayjs";
 
 export class AccountService {
   static async Login(
@@ -39,5 +42,37 @@ export class AccountService {
         withCredentials: true,
       }
     );
+  }
+
+  static async ParticipantRegistration(email: string, password: string) {
+    const method = "participant/registration";
+    return await api.post(method, { email, password });
+  }
+
+  static async VolunteerRegistration(
+    email: string,
+    username: string,
+    description: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    startVolunteeringDate: Dayjs | null,
+    phoneNumbers: string[],
+    socialNetworks: string[],
+    requisitesesDto: requisite[]
+  ) {
+    const method = "volunteer/registration";
+    return await api.post(method, {
+      email,
+      username,
+      description,
+      password,
+      firstName,
+      lastName,
+      startVolunteeringDate,
+      phoneNumbers,
+      socialNetworks,
+      requisitesesDto,
+    });
   }
 }

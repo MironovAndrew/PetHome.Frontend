@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router";
 import { RootLayout } from "./RootLayout";
-import { RegistrationPage } from "../pages/contentPages/userManagment/RegistrationPage";
 import { LoginPage } from "../pages/contentPages/userManagment/LoginPage";
 import { MainPage } from "../pages/contentPages/userManagment/MainPage";
 import { Volunteers } from "../pages/contentPages/petManagment/Volunteers";
@@ -9,6 +8,7 @@ import { UserProfilePage } from "../pages/contentPages/userManagment/UserProfile
 import { HelpPage } from "../pages/contentPages/userManagment/HelpPage";
 import { FavoritePets } from "../pages/contentPages/petManagment/FavoritePets";
 import { NotFound } from "../pages/basePages/NotFound";
+import { MainRegistrationPage } from "../pages/contentPages/userManagment/registration/mainRegistrationPage";
 
 export function getRouter() {
   return createBrowserRouter([
@@ -21,7 +21,7 @@ export function getRouter() {
         },
         {
           path: "/registration",
-          element: <RegistrationPage />,
+          element: <MainRegistrationPage />,
         },
         {
           path: "/login",

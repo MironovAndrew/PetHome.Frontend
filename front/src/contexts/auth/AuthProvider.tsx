@@ -3,6 +3,8 @@ import { AccountService } from "../../api/AccountService";
 import { User } from "../../models/dtos/User";
 import { AuthContext } from "./AuthContext";
 import { api } from "../../api/api";
+import { requisite } from "../../models/dtos/Requisite";
+import { Dayjs } from "dayjs";
 
 export type Props = { children: React.ReactNode };
 
@@ -66,17 +68,58 @@ export const AuthProvider = ({ children }: Props) => {
   const login = async (email: string, password: string) => {
     try {
       const loginResponse = await AccountService.Login(email, password);
-      const loginResponseData = loginResponse.data.result;
       console.log(loginResponse);
-
-      setAccessToken(loginResponse.data.result!.accessToken);
-      setUser({
-        id: loginResponseData.userId,
-        email: loginResponseData.email,
-        username: loginResponseData.userName,
-      } as User);
     } catch (error) {
       console.log(error);
+      setUser(undefined);
+      setAccessToken(undefined);
+    }
+  };
+
+  const participantRegistration = async (email: string, password: string) => {
+    try {
+      const loginResponse = await AccountService.ParticipantRegistration(
+        email,
+        password
+      );
+      console.log(loginResponse);
+    } catch (error) {
+      console.log(error);
+      setUser(undefined);
+      setAccessToken(undefined);
+    }
+  };
+
+  const volunteerRegistration = async (
+    email: string,
+    username: string,
+    description: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    startVolunteeringDate: Dayjs | null,
+    phoneNumbers: string[],
+    socialNetworks: string[],
+    requisitesesDto: requisite[]
+  ) => {
+    try {
+      const loginResponse = await AccountService.VolunteerRegistration(
+        email,
+        username,
+        description,
+        password,
+        firstName,
+        lastName,
+        startVolunteeringDate,
+        phoneNumbers,
+        socialNetworks,
+        requisitesesDto
+      );
+      console.log(loginResponse);
+    } catch (error) {
+      console.log(error);
+      setAccessToken(undefined);
+      setUser(undefined);
     }
   };
 
@@ -87,11 +130,22 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(user);
     } catch (error) {
       console.log(error);
+      setAccessToken(undefined);
+      setUser(undefined);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ accessToken, user, login, authChecker }}>
+    <AuthContext.Provider
+      value={{
+        accessToken,
+        user,
+        login,
+        participantRegistration,
+        volunteerRegistration,
+        authChecker,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
