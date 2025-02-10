@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { AccountService } from "../../../api/AccountService";
+import { AccountService } from "../../../api/accounts";
 import { useAuth } from "../../../contexts/auth/useAuth";
 import { Typography } from "@mui/material";
 

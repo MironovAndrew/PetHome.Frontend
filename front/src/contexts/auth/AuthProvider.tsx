@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { AccountService } from "../../api/AccountService";
+import { AccountService } from "../../api/accounts";
 import { User } from "../../models/dtos/User";
 import { AuthContext } from "./AuthContext";
 import { api } from "../../api/api";

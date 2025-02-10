@@ -9,6 +9,7 @@ import { HelpPage } from "../pages/contentPages/userManagment/HelpPage";
 import { FavoritePets } from "../pages/contentPages/petManagment/FavoritePets";
 import { NotFound } from "../pages/basePages/NotFound";
 import { MainRegistrationPage } from "../pages/contentPages/userManagment/registration/mainRegistrationPage";
+import { FileManager } from "../pages/handlerPages/FileManager";
 
 export function getRouter() {
   return createBrowserRouter([
@@ -50,6 +51,10 @@ export function getRouter() {
         {
           path: "/help",
           element: <HelpPage />,
+        },
+        {
+          path: "/file",
+          element: <FileManager />,
         },
       ],
       errorElement: <NotFound />,
