@@ -44,6 +44,7 @@ export function FileManager() {
 
       const etag = uploadPartResponse?.headers["etag"] as string;
       parts.push({ partNumber, eTag: etag });
+      partNumber++;
     }
 
     const completeMultipartResponse = await FilesService.CompleteMultipart(
