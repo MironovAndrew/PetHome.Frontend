@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }: Props) => {
   const [accessToken, setAccessToken] = useState<string | undefined>();
   const [user, setUser] = useState<User | undefined>();
 
+  // Добавление access token (если он доступен) перед каждым запросом
   useEffect(() => {
     const accessTokenInterceptor = api.interceptors.request.use((config) => {
       config.headers.Authorization = accessToken
@@ -20,11 +21,13 @@ export const AuthProvider = ({ children }: Props) => {
       return config;
     });
 
+    // Завершение перехватчика
     return () => {
       api.interceptors.response.eject(accessTokenInterceptor);
     };
   }, [accessToken]);
 
+  // Перехватчик ответа. Если 401 (не авторизирован), но есть access token, сгенерировать новый 
   useLayoutEffect(() => {
     const refreshTokenInterceptor = api.interceptors.response.use(
       (config) => config,
