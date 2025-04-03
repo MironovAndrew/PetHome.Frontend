@@ -1,34 +1,46 @@
-import { useEffect } from "react";
-import { getSpecies } from "../../../modules/petManagement/species.slice";
-import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { useCreateSpeciesMutation, useGetSpeciesQuery } from "../../../modules/petManagement/api";
 
 export function Volunteers() { 
-   const dispatch = useAppDispatch();
-   const speciesState = useAppSelector((state) => state.species.speciesState);
-   const species = useAppSelector((state) => state.species.species);
+  //  const dispatch = useAppDispatch();
+  
+   //  const speciesState = useAppSelector((state) => state.species.speciesState);
+  //  const species = useAppSelector((state) => state.species.species);
 
-   useEffect(()=>{
-      if(speciesState === "idle"){
-        dispatch(getSpecies());
-      }
-   }, [dispatch, speciesState]);
+  //  useEffect(()=>{
+  //     if(speciesState === "idle"){
+  //       dispatch(getSpecies());
+  //     }
+  //  }, [dispatch, speciesState]);
 
-   if(speciesState === "failed")
+  const { 
+    data: species = [],
+    isError, 
+    isLoading
+  } = useGetSpeciesQuery({pageNum: 1, pageSize: 10});
+   
+  const [createSpecies] = useCreateSpeciesMutation();
+
+   if(isError)
       return <div>Произошла ошибка</div>
     
-    if(speciesState === "pending")
+    if(isLoading)
       return <div>Загрузка...</div>
-
-    
-  return (   
+  
+  return (    
         <div className="flex flex-col flex-1 min-w-8 mx-auto pt-12 items-center justify-center gap-9">
           <h1>Species:</h1> 
-          {species.map((species)=>(
-            <div>
-                <p>id: {species.id}</p>
-                <p>name: {species.name}</p>
-            </div>
-          ))}
+              {species.map((sp)=>(
+                <div>
+                    <p>id: {sp.id}</p>
+                    <p>name: {sp.name}</p>
+                </div>
+              ))} 
+
+          <div>
+            <button onClick={()=>{  
+              createSpecies({speciesName: "FromFront"});
+            }}>Добавить вид</button>
+          </div>
       </div>
   );
 } 

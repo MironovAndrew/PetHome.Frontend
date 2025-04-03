@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import speciesReducer from "../modules/petManagement/species.slice";
+import { baseApi } from "../shared/api";
 
 export const store = configureStore({
     reducer:{
+        [baseApi.reducerPath]: baseApi.reducer,
          species: speciesReducer
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware)
 });
   
 export type AppState = ReturnType<typeof store.getState>;

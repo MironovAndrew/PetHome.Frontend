@@ -4,11 +4,6 @@ export type Species = {
     id:string
     name:string
     breeds:string[]
-    // photoPath:string
-    // desc:string
-    // age:number
-    // gender:string
-    // isVaccinated:boolean
 };
   
 export type SpeciesState = {
@@ -35,11 +30,7 @@ const initialState: SpeciesState = {
 export const speciesSlice = createSlice({
     name: "pets",
     initialState,
-    reducers:{
-        // setSpecies:(state,{payload}: PayloadAction<Species[]>)=>{
-        //     state.species = payload
-        // }
-    },
+    reducers:{},
     extraReducers:(builder) =>{
         builder.addCase(getSpecies.pending, (state) => {
             state.speciesState = "pending";
@@ -54,5 +45,4 @@ export const speciesSlice = createSlice({
     }
 });
 
-export default speciesSlice.reducer;
-// export const {setSpecies} = speciesSlice.actions;
+export default speciesSlice.reducer; 
