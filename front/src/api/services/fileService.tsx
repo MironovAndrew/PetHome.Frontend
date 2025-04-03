@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from "axios";
-import { eTag } from "../models/DataRequests/File/eTag";
-
+import axios from "axios";
+import { eTag } from "../../models/DataRequests/File/eTag";
+ 
 const FILES_URL: string = "http://localhost:5053/";
 
 export class FilesService {

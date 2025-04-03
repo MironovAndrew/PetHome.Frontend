@@ -1,19 +1,19 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs, { Dayjs } from "dayjs";
 import * as React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../../../contexts/auth/useAuth";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { Typography, TextField, IconButton, Button } from "@mui/material";
 import { VolunteerRegistrationFields } from "../../../../models/DataRequests/Registration/VolunteerRegistrationFields";
-import dayjs, { Dayjs } from "dayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { addSocialNetworksForm } from "../../../forms/registrationForms/AddSocialNetworksForm";
-import { addPhoneNumbersForm } from "../../../forms/registrationForms/AddPhoneNumbersForm";
-import { useState } from "react";
-import { addRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
 import { requisite } from "../../../../models/dtos/Requisite";
+import { AddPhoneNumbersForm } from "../../../forms/registrationForms/AddPhoneNumbersForm";
+import { AddRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
+import { AddSocialNetworksForm } from "../../../forms/registrationForms/AddSocialNetworksForm";
 
 export function VolunteerRegistrationPage() {
   const {
@@ -179,9 +179,9 @@ export function VolunteerRegistrationPage() {
               className="w-full"
               onChange={(newValue) => setStartVolunteeringDate(newValue)}
             />
-            {addPhoneNumbersForm({ onSave: setPhoneNumbers })}
-            {addSocialNetworksForm({ onSave: setSocialNetworks })}
-            {addRequisitesForm({ onSave: setRequisites })}
+            {AddPhoneNumbersForm({ onSave: setPhoneNumbers })}
+            {AddSocialNetworksForm({ onSave: setSocialNetworks })}
+            {AddRequisitesForm({ onSave: setRequisites })}
           </LocalizationProvider>
           <Button variant="contained" className="w-full" type="submit">
             Зарегистрироваться

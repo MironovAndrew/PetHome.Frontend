@@ -1,5 +1,5 @@
 import { Button, Input } from "@mui/material";
-import { FilesService } from "../../api/files";
+import { FilesService } from "../../api/services/fileService";
 import { eTag } from "../../models/DataRequests/File/eTag";
 
 export function FileManager() {

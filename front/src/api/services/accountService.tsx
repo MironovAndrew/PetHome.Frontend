@@ -1,10 +1,9 @@
-import axios, { AxiosResponse } from "axios";
-import { Envelope } from "../models/Error/Envelope";
-import { LoginResponse } from "../models/DataResponses/Login/LoginResponse";
-import { api, API_URL } from "./api";
-import { UserRegistrationFields } from "../models/DataRequests/Registration/RegistrationFields";
-import { requisite } from "../models/dtos/Requisite";
-import dayjs, { Dayjs } from "dayjs";
+import { AxiosResponse } from "axios";
+import { Dayjs } from "dayjs";
+import { LoginResponse } from "../../models/DataResponses/Login/LoginResponse";
+import { requisite } from "../../models/dtos/Requisite";
+import { Envelope } from "../../models/Error/Envelope";
+import { api } from "../api";
 
 export class AccountService {
   static async Login(

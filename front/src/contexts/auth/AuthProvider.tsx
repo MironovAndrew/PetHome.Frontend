@@ -1,10 +1,10 @@
+import { Dayjs } from "dayjs";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { AccountService } from "../../api/accounts";
+import { api } from "../../api/api";
+import { AccountService } from "../../api/services/accountService";
+import { requisite } from "../../models/dtos/Requisite";
 import { User } from "../../models/dtos/User";
 import { AuthContext } from "./AuthContext";
-import { api } from "../../api/api";
-import { requisite } from "../../models/dtos/Requisite";
-import { Dayjs } from "dayjs";
 
 export type Props = { children: React.ReactNode };
 

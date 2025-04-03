@@ -1,9 +1,9 @@
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid2";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
 import CustomCard from "../../../customComponents/UI/Pet/PetCard";
 import { PetFilter } from "../../../customComponents/UI/Pet/PetFilter";
-import { ContentPagination } from "../../../customComponents/ContentPagination";
+import { ContentPagination } from "../../../customComponents/contentPagination";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -25,7 +25,7 @@ export function Pets() {
   const gender = "Мальчик";
   const isVaccinated = true;
 
-  let cards = [];
+  const cards = [];
 
   for (let i = 0; i < 10; i++) {
     cards.push(

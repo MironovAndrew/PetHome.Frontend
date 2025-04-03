@@ -1,10 +1,10 @@
-import { Button, IconButton, TextField, Typography } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { Navigate, NavLink, useNavigate } from "react-router";
-import { LoginFields } from "../../../models/DataRequests/Login/LoginFields";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useAuth } from "../../../contexts/auth/useAuth";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router";
+import { useAuth } from "../../../contexts/auth/useAuth";
+import { LoginFields } from "../../../models/DataRequests/Login/loginFields";
 
 export function LoginPage() {
   const {
