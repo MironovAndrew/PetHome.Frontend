@@ -1,7 +1,5 @@
-import { useEffect } from "react";
-import { AccountService } from "../../../api/AccountService";
-import { useAuth } from "../../../contexts/auth/useAuth";
 import { Typography } from "@mui/material";
+import { useAuth } from "../../../contexts/auth/useAuth";
 
 export function UserProfilePage() {
   const { user, accessToken } = useAuth();

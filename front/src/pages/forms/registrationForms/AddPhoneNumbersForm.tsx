@@ -1,15 +1,15 @@
-import * as React from "react";
+import { Delete } from "@mui/icons-material";
+import { Box, IconButton } from "@mui/material";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Box, IconButton } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import TextField from "@mui/material/TextField";
+import * as React from "react";
 import { useState } from "react";
 
-export function addPhoneNumbersForm({
+export function AddPhoneNumbersForm({
   onSave,
 }: {
   onSave: (numbers: { phone: string }[]) => void;
