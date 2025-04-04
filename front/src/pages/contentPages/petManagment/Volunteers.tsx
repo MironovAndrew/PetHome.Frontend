@@ -1,4 +1,4 @@
-import { useCreateSpeciesMutation, useGetSpeciesQuery } from "../../../modules/petManagement/api";
+import { useCreateSpeciesMutation, useGetSpeciesQuery } from "../../../modules/petManagementService/speciesEntity/speciesApi";
 
 export function Volunteers() { 
   //  const dispatch = useAppDispatch();

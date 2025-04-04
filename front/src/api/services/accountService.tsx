@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 import { Dayjs } from "dayjs";
-import { LoginResponse } from "../../models/DataResponses/Login/LoginResponse";
-import { requisite } from "../../models/dtos/Requisite";
-import { Envelope } from "../../models/Error/Envelope";
+import { requisite } from "../../domain/accountEntity/Requisite";
+import { LoginResponse } from "../../shared/models/DataResponses/Login/LoginResponse";
+import { Envelope } from "../../shared/models/Error/Envelope";
 import { api } from "../api";
 
 export class AccountService {

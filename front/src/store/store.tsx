@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import speciesReducer from "../modules/petManagement/species.slice";
+import speciesReducer from "../modules/petManagementService/speciesEntity/species.slice";
 import { baseApi } from "../shared/api";
 
 export const store = configureStore({

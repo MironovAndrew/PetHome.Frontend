@@ -1,7 +1,7 @@
 import { Dayjs } from "dayjs";
 import { createContext } from "react";
-import { requisite } from "../../models/dtos/Requisite";
-import { User } from "../../models/dtos/User";
+import { requisite } from "../../domain/accountEntity/Requisite";
+import { User } from "../../domain/accountEntity/User";
 
 export type AuthContextType = {
   accessToken: string | undefined;

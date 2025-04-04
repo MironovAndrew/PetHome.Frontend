@@ -46,7 +46,7 @@ const settings = [
 ];
 
 export function PageHeader() {
-  const { accessToken, authChecker } = useAuth();
+  const { accessToken } = useAuth();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null

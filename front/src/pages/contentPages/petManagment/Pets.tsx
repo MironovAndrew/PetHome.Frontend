@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid2";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
+import { ContentPagination } from "../../../customComponents/ContentPagination";
 import CustomCard from "../../../customComponents/UI/Pet/PetCard";
 import { PetFilter } from "../../../customComponents/UI/Pet/PetFilter";
-import { ContentPagination } from "../../../customComponents/contentPagination";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",

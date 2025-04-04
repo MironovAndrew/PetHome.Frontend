@@ -1,10 +1,10 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
 import * as React from "react";
+import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../../../contexts/auth/useAuth";
-import { UserRegistrationFields } from "../../../../models/DataRequests/Registration/RegistrationFields";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { Typography, TextField, IconButton, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { UserRegistrationFields } from "../../../../shared/models/DataRequests/Registration/RegistrationFields";
 
 export function ParticipantRegistrationPage() {
   const {

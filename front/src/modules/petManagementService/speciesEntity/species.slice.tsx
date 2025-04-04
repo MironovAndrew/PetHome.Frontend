@@ -1,11 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit/react";
+import { Species } from "../../../domain/petManagementEntity/speciesEntity/species";
 
-export type Species = {
-    id:string
-    name:string
-    breeds:string[]
-};
-  
 export type SpeciesState = {
     species: Species[];
     speciesState: "idle" | "pending" | "succeeded" | "failed";

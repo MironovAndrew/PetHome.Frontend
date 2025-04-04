@@ -1,5 +1,5 @@
-import { baseApi } from "../../shared/api";
-import { Species } from "./species.slice";
+import { Species } from "../../../domain/petManagementEntity/speciesEntity/species";
+import { baseApi } from "../../../shared/api";
 
 export const speciesApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
