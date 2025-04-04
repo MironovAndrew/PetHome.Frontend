@@ -7,12 +7,12 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router";
 
 export default function PetCard(
-  photoPath: string,
-  name: string,
-  desc: string,
-  age: number,
-  gender: string,
-  isVaccinated: boolean
+  photoPath: string | undefined,
+  name: string | undefined,
+  desc: string | undefined,
+  age: number | undefined,
+  gender: string | undefined,
+  isVaccinated: boolean | undefined
 ) {
   const isVaccinatedString = isVaccinated == true ? "Да" : "Нет";
 
