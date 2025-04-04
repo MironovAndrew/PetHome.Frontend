@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { Dayjs } from "dayjs";
-import { requisite } from "../../domain/accountEntity/Requisite";
 import { LoginResponse } from "../../shared/models/DataResponses/Login/LoginResponse";
+import { Requisite } from "../../shared/models/dto/Requisite";
 import { Envelope } from "../../shared/models/Error/Envelope";
 import { api } from "../api";
 
@@ -58,7 +58,7 @@ export class AccountService {
     startVolunteeringDate: Dayjs | null,
     phoneNumbers: string[],
     socialNetworks: string[],
-    requisitesesDto: requisite[]
+    requisitesesDto: Requisite[]
   ) {
     const method = "volunteer/registration";
     return await api.post(method, {

@@ -1,25 +1,24 @@
-import { useCreateSpeciesMutation, useGetSpeciesQuery } from "../../../modules/petManagementService/speciesEntity/speciesApi";
+import { useGetPetsQuery } from "../../../modules/petManagementService/petEntity/petsApi";
 
 export function Volunteers() { 
-  //  const dispatch = useAppDispatch();
-  
-   //  const speciesState = useAppSelector((state) => state.species.speciesState);
-  //  const species = useAppSelector((state) => state.species.species);
-
-  //  useEffect(()=>{
-  //     if(speciesState === "idle"){
-  //       dispatch(getSpecies());
-  //     }
-  //  }, [dispatch, speciesState]);
-
   const { 
-    data: species = [],
+    data: pets = [],
     isError, 
     isLoading
-  } = useGetSpeciesQuery({pageNum: 1, pageSize: 10});
+  } = useGetPetsQuery({ 
+      speciesId: "a418b7e3-c6a9-435c-9537-9f55f646491e", 
+      name: undefined,
+      age: undefined, 
+      breedId: "a418b7e3-c6a9-435c-9537-9f55f646491e", 
+      color: "black", 
+      shelterId: undefined,
+      weight: undefined, 
+      isVaccinated: undefined, 
+      isCastrated: undefined,
+      status: undefined, 
+      pagedListDto: {pageSize: 22, pageNum:1}
+    });
    
-  const [createSpecies] = useCreateSpeciesMutation();
-
    if(isError)
       return <div>Произошла ошибка</div>
     
@@ -29,18 +28,14 @@ export function Volunteers() {
   return (    
         <div className="flex flex-col flex-1 min-w-8 mx-auto pt-12 items-center justify-center gap-9">
           <h1>Species:</h1> 
-              {species.map((sp)=>(
+              {pets.map((pet)=>(
                 <div>
-                    <p>id: {sp.id}</p>
-                    <p>name: {sp.name}</p>
+                    <p>id: {pet.id}</p>
+                    <p>name: {pet.name}</p> 
+                    <p>weight: {pet.weight}</p>
+                    <p>status: {pet.status}</p>
                 </div>
-              ))} 
-
-          <div>
-            <button onClick={()=>{  
-              createSpecies({speciesName: "FromFront"});
-            }}>Добавить вид</button>
-          </div>
+              ))}  
       </div>
   );
 } 

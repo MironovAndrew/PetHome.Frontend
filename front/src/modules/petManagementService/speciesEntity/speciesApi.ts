@@ -1,13 +1,13 @@
 import { Species } from "../../../domain/petManagementEntity/speciesEntity/species";
-import { baseApi } from "../../../shared/api";
+import { petMangementApi } from "../api/petMangementApi";
 
-export const speciesApi = baseApi.injectEndpoints({
+export const speciesApi = petMangementApi.injectEndpoints({
     endpoints: (build) => ({
         getSpecies: build.query<Species[], { pageNum: number, pageSize: number }>({
             query: ({pageNum, pageSize}) => ({
                 url:"Species/breeds/paged",
                 params: {pageNum, pageSize}}),
-                providesTags: ["Species"],
+                providesTags: ["PetMangement"],
                 transformResponse: (data: { result: Species[] }) => data.result,
         }),
         createSpecies: build.mutation<void, {speciesName: string}>({

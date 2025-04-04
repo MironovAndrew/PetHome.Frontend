@@ -9,8 +9,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../../../contexts/auth/useAuth";
-import { requisite } from "../../../../domain/accountEntity/Requisite";
 import { VolunteerRegistrationFields } from "../../../../shared/models/DataRequests/Registration/VolunteerRegistrationFields";
+import { Requisite } from "../../../../shared/models/dto/Requisite";
 import { AddPhoneNumbersForm } from "../../../forms/registrationForms/AddPhoneNumbersForm";
 import { AddRequisitesForm } from "../../../forms/registrationForms/AddRequisitesForm";
 import { AddSocialNetworksForm } from "../../../forms/registrationForms/AddSocialNetworksForm";
@@ -53,7 +53,7 @@ export function VolunteerRegistrationPage() {
     React.useState<Dayjs | null>(dayjs("2022-04-17"));
   const [phoneNumbers, setPhoneNumbers] = useState([{ phone: "" }]);
   const [socialNetworks, setSocialNetworks] = useState([{ link: "" }]);
-  const [requisites, setRequisites] = useState<requisite[]>([]);
+  const [requisites, setRequisites] = useState<Requisite[]>([]);
   const password = watch("password");
 
   return (

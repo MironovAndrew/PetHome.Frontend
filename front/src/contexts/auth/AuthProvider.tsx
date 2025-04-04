@@ -2,8 +2,8 @@ import { Dayjs } from "dayjs";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { api } from "../../api/api";
 import { AccountService } from "../../api/services/accountService";
-import { requisite } from "../../domain/accountEntity/Requisite";
 import { User } from "../../domain/accountEntity/User";
+import { Requisite } from "../../shared/models/dto/Requisite";
 import { AuthContext } from "./AuthContext";
 
 export type Props = { children: React.ReactNode };
@@ -103,7 +103,7 @@ export const AuthProvider = ({ children }: Props) => {
     startVolunteeringDate: Dayjs | null,
     phoneNumbers: string[],
     socialNetworks: string[],
-    requisitesesDto: requisite[]
+    requisitesesDto: Requisite[]
   ) => {
     try {
       const loginResponse = await AccountService.VolunteerRegistration(
