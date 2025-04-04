@@ -16,35 +16,20 @@ import {
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 
-export function PetFilter({
-  onSave,
-}: {
-  onSave: (
-    name: string | undefined,
-    species: string | undefined,
-    breed: string | undefined,
-    color: string | undefined,
-    address: string | undefined,
-    weight: number | undefined,
-    isVaccinated: boolean | undefined,
-    gender: string | undefined,
-    age: number | undefined,
-    status: string | undefined
-  ) => void;
-}) {
-  const [name, setName] = useState<string | undefined>();
-  const [species, setSpecies] = useState<string | undefined>();
-  const [breed, setBreed] = useState<string | undefined>();
-  const [color, setColor] = useState<string | undefined>();
-  const [address, setAddress] = useState<string | undefined>();
-  const [weight, setWeight] = useState<number | undefined>();
-  const [age, setAge] = useState<number | undefined>();
-  const [isVaccinated, setIsVaccinated] = useState<boolean | undefined>();
-  const [gender, setGender] = useState<string | undefined>();
-  const [status, setStatus] = useState<string | undefined>();
+export function PetFilter({ onSave }: { onSave: (filters: any) => void }) {
+  const [name, setName] = useState<string>();
+  const [species, setSpecies] = useState<string>();
+  const [breed, setBreed] = useState<string>();
+  const [color, setColor] = useState<string>();
+  const [address, setAddress] = useState<string>();
+  const [weight, setWeight] = useState<number>();
+  const [age, setAge] = useState<number>();
+  const [isVaccinated, setIsVaccinated] = useState<boolean>();
+  const [gender, setGender] = useState<string>();
+  const [status, setStatus] = useState<string>();
 
   const handleSave = () => {
-    onSave(
+    onSave({
       name,
       species,
       breed,
@@ -54,8 +39,8 @@ export function PetFilter({
       isVaccinated,
       gender,
       age,
-      status
-    );
+      status,
+    });
     return name;
   };
 
