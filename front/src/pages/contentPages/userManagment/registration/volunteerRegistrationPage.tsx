@@ -179,9 +179,9 @@ export function VolunteerRegistrationPage() {
               className="w-full"
               onChange={(newValue) => setStartVolunteeringDate(newValue)}
             />
-            {AddPhoneNumbersForm({ onSave: setPhoneNumbers })}
-            {AddSocialNetworksForm({ onSave: setSocialNetworks })}
-            {AddRequisitesForm({ onSave: setRequisites })}
+            <AddPhoneNumbersForm onSave={setPhoneNumbers} />
+            <AddSocialNetworksForm onSave={setSocialNetworks} />
+            <AddRequisitesForm onSave={setRequisites} />
           </LocalizationProvider>
           <Button variant="contained" className="w-full" type="submit">
             Зарегистрироваться

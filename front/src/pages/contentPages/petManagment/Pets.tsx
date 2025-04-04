@@ -22,6 +22,8 @@ export function Pets() {
   const photoPath =
     "https://img-webcalypt.ru/uploads/admin/images/meme-templates/VjZyOLNPWxvqT0FuPhpP33iHfhWdo0QP.jpg";
 
+  const [pageNum, setPageNum] = useState<number>(1);
+
   const [filters, setFilters] = useState<any>({
     name: undefined,
     species: undefined,
@@ -51,11 +53,12 @@ export function Pets() {
     isVaccinated: filters?.isVaccinated,
     isCastrated: filters?.isCastrated,
     status: filters?.status,
-    pagedListDto: { pageSize: 10, pageNum: 1 },
+    pagedListDto: { pageSize: 5, pageNum: pageNum },
   });
 
   console.log(pets);
   console.log(filters);
+  console.log("pageNum ", pageNum);
 
   if (isError) return <div>Произошла ошибка</div>;
   if (isLoading) return <div>Загрузка...</div>;
@@ -77,7 +80,7 @@ export function Pets() {
                   photoPath={photoPath}
                   name={pet.name}
                   desc={pet.description}
-                  age={22}
+                  birthDate={pet.birthDate}
                   gender={"male"}
                   isVaccinated={pet.isVaccinated}
                 />
@@ -88,7 +91,7 @@ export function Pets() {
       </Grid>
 
       <Grid container justifyContent="center" marginTop={10} marginBottom={5}>
-        <ContentPagination contentCount={10} pageContentCount={1} />
+        <ContentPagination onSave={setPageNum} />
       </Grid>
     </Grid>
   );

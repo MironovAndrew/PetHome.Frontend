@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import { MediaFile } from "../../../shared/models/dto/MediaFile";
 import { Requisite } from "../../../shared/models/dto/Requisite";
 
@@ -11,7 +12,7 @@ export type Pet = {
   shelterId: string;
   weight: number;
   isCastrated: boolean;
-  birthDate: string;
+  birthDate: Dayjs;
   isVaccinated: boolean;
   status: string;
   volunteerId: string;
