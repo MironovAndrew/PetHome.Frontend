@@ -1,6 +1,5 @@
-
 export type Species = {
-    id: string;
-    name: string;
-    breeds: string[];
+  id: string;
+  name: string;
+  breeds: string[];
 };

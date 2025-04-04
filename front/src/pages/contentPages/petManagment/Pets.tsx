@@ -20,8 +20,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export function Pets() {
   const photoPath =
-    "https://img-webcalypt.ru/uploads/admin/images/meme-templates/VjZyOLNPWxvqT0FuPhpP33iHfhWdo0QP.jpg";  
- 
+    "https://img-webcalypt.ru/uploads/admin/images/meme-templates/VjZyOLNPWxvqT0FuPhpP33iHfhWdo0QP.jpg";
+
   const [name, setName] = useState<string | undefined>("");
   const [species, setSpecies] = useState<string | undefined>("");
   const [breed, setBreed] = useState<string | undefined>("");
@@ -34,23 +34,21 @@ export function Pets() {
   const [status, setStatus] = useState<string | undefined>("");
   const [age, setAge] = useState<number | undefined>(22);
 
-  const {
-    data: pets,
-  } = useGetPetsQuery({
-      speciesId: species,
-      name: name,
-      age: age,
-      breedId: breed,
-      color: color,
-      shelterId: address,
-      weight: weight,
-      isVaccinated: isVaccinated,
-      isCastrated: isCastrated,
-      status: status,
-      pagedListDto: { pageSize: 10, pageNum: 1 },
-  })  
+  const { data: pets } = useGetPetsQuery({
+    speciesId: species,
+    name: name,
+    age: age,
+    breedId: breed,
+    color: color,
+    shelterId: address,
+    weight: weight,
+    isVaccinated: isVaccinated,
+    isCastrated: isCastrated,
+    status: status,
+    pagedListDto: { pageSize: 10, pageNum: 1 },
+  });
 
-const cards = []; 
+  const cards = [];
   for (let i = 0; i < 10; i++) {
     cards.push(
       <Grid>
@@ -59,15 +57,27 @@ const cards = [];
         </Item>
       </Grid>
     );
-  } 
+  }
 
-console.log(isVaccinated);
-  
-return (
+  console.log(isVaccinated);
+
+  return (
     <Grid container spacing={1} padding={2}>
       <Grid size={2}>
         <Item>
-          {PetFilter({onSave(name, species, breed, color, address, weight, isVaccinated,  gender, age, status) {
+          {PetFilter({
+            onSave(
+              name,
+              species,
+              breed,
+              color,
+              address,
+              weight,
+              isVaccinated,
+              gender,
+              age,
+              status
+            ) {
               setName(name);
               setSpecies(species);
               setBreed(breed);
@@ -78,7 +88,8 @@ return (
               setGender(gender);
               setAge(age);
               setStatus(status);
-            }})}
+            },
+          })}
         </Item>
       </Grid>
 

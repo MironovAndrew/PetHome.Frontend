@@ -1,5 +1,5 @@
-import Pagination from "@mui/material/Pagination";
 import { Typography } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
 import { useState } from "react";
 
 export function ContentPagination(
