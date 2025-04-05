@@ -1,5 +1,5 @@
 import axios from "axios";
-import { eTag } from "../../models/DataRequests/File/eTag";
+import { eTag } from "../../shared/models/DataRequests/File/eTag";
  
 const FILES_URL: string = "http://localhost:5053/";
 

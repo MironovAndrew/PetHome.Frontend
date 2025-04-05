@@ -4,16 +4,26 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import dayjs, { Dayjs } from "dayjs";
 import { useNavigate } from "react-router";
 
-export default function PetCard(
-  photoPath: string,
-  name: string,
-  desc: string,
-  age: number,
-  gender: string,
-  isVaccinated: boolean
-) {
+type PetCardProps = {
+  photoPath?: string;
+  name?: string;
+  desc?: string;
+  birthDate?: Dayjs;
+  gender?: string;
+  isVaccinated?: boolean;
+};
+
+export default function PetCard({
+  photoPath,
+  name,
+  desc,
+  birthDate,
+  gender,
+  isVaccinated,
+}: PetCardProps) {
   const isVaccinatedString = isVaccinated == true ? "Да" : "Нет";
 
   const navigate = useNavigate();
@@ -40,7 +50,8 @@ export default function PetCard(
           </Typography>
 
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            <b>Возраст:</b> {age}
+            <b>Дата рождения:</b>{" "}
+            {birthDate ? dayjs(birthDate).format("DD.MM.YYYY") : "—"}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <b>Вакцинация:</b> {isVaccinatedString}

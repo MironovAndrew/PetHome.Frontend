@@ -10,14 +10,14 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
 import { useState } from "react";
-import { requisite } from "../../../models/dtos/Requisite";
+import { Requisite } from "../../../shared/models/dto/Requisite";
 
 export function AddRequisitesForm({
   onSave,
 }: {
-  onSave: (requisites: requisite[]) => void;
+  onSave: (requisites: Requisite[]) => void;
 }) {
-  const [requisites, setRequisites] = useState<requisite[]>([]);
+  const [requisites, setRequisites] = useState<Requisite[]>([]);
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {

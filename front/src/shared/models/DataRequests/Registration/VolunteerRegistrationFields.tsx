@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { requisite } from "../../dtos/Requisite";
+import { Requisite } from "../../dto/Requisite";
 
 export type VolunteerRegistrationFields = {
   email: string;
@@ -12,5 +12,5 @@ export type VolunteerRegistrationFields = {
   startVolunteeringDate: Dayjs | null;
   phoneNumbers: string[];
   socialNetworks: string[];
-  requisitesesDto: requisite[];
+  requisitesesDto: Requisite[];
 };

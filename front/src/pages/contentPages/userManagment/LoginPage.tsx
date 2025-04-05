@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../../contexts/auth/useAuth";
-import { LoginFields } from "../../../models/DataRequests/Login/loginFields";
+import { LoginFields } from "../../../shared/models/DataRequests/Login/LoginFields";
 
 export function LoginPage() {
   const {
