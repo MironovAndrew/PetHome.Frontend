@@ -16,7 +16,25 @@ import {
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 
-export function PetFilter({ onSave }: { onSave: (filters: any) => void }) {
+export type PetFilterProps = {
+  name?: string;
+  species?: string;
+  breed?: string;
+  color?: string;
+  address?: string;
+  weight?: number;
+  isVaccinated?: boolean;
+  isCastrated?: boolean;
+  gender?: string;
+  age?: number;
+  status?: string;
+};
+
+export function PetFilter({
+  onSave,
+}: {
+  onSave: (filters: PetFilterProps) => void;
+}) {
   const [name, setName] = useState<string>();
   const [species, setSpecies] = useState<string>();
   const [breed, setBreed] = useState<string>();

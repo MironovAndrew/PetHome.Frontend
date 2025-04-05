@@ -4,7 +4,10 @@ import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { ContentPagination } from "../../../customComponents/ContentPagination";
 import PetCard from "../../../customComponents/UI/Pet/PetCard";
-import { PetFilter } from "../../../customComponents/UI/Pet/PetFilter";
+import {
+  PetFilter,
+  PetFilterProps,
+} from "../../../customComponents/UI/Pet/PetFilter";
 import { useGetPetsQuery } from "../../../modules/petManagementService/petEntity/petsApi";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,7 +27,7 @@ export function Pets() {
 
   const [pageNum, setPageNum] = useState<number>(1);
 
-  const [filters, setFilters] = useState<any>({
+  const [filters, setFilters] = useState<PetFilterProps>({
     name: undefined,
     species: undefined,
     breed: undefined,
@@ -67,7 +70,9 @@ export function Pets() {
     <Grid container spacing={10} padding={2}>
       <Grid item xs={12} md={2}>
         <Item>
-          <PetFilter onSave={(newFilters) => setFilters(newFilters)} />
+          <PetFilter
+            onSave={(newFilters: PetFilterProps) => setFilters(newFilters)}
+          />
         </Item>
       </Grid>
 
