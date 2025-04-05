@@ -44,10 +44,10 @@ export function MainRegistrationPage() {
                 </TabList>
                 <div className="flex flex-1 min-w-8 mx-auto items-center justify-center gap-9">
                   <TabPanel value={participantTab}>
-                    {ParticipantRegistrationPage()}
+                    <ParticipantRegistrationPage />
                   </TabPanel>
                   <TabPanel value={volunteerTab}>
-                    {VolunteerRegistrationPage()}
+                    <VolunteerRegistrationPage />
                   </TabPanel>
                 </div>
               </TabContext>
